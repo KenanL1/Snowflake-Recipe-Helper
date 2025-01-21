@@ -1,7 +1,7 @@
 pandas
 streamlit
 snowflake
-dotenv
+python-dotenv
 langchain
 langchain-community
 pwd
