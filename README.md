@@ -1,6 +1,8 @@
 # Recipe Helper
 A Streamlit app powered by Snowflake and Mistral, designed to simplify meal planning and provide nutritional information.
 
+[Streamlit Community Cloud App](https://app-recipe-apper-tbmbzxoyg9cbj5zf29imz3.streamlit.app/)
+
 ## Description
 Are you tired of flipping through cookbooks to find the perfect recipe, only to realize it lacks nutritional information? Recipe Helper solves this problem by allowing you to load your cookbooks, search for recipes, and view nutritional information based on ingredients used.
 

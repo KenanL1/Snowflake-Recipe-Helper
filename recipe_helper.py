@@ -212,6 +212,14 @@ def complete(prompt):
 
 def main():
     st.title(f":chopsticks: Nutritional Recipe Helper :bacon:")
+
+    st.sidebar.markdown('''Available Demo Recipes
+                        
+    - Beef in Beer
+    - Pad Thai Chicken
+    - Thai Green Curry 
+            ''')
+
     # config_options()
     question = st.text_input(
         "Enter question", placeholder="Search for a Recipe", label_visibility="collapsed")
