@@ -4,5 +4,4 @@ snowflake
 python-dotenv
 langchain
 langchain-community
-pwd
 snowflake-snowpark-python
