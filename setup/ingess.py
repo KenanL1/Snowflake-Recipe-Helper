@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import os
+import streamlit as st
 from dotenv import load_dotenv
 import snowflake.connector
 from snowflake.core import Root
@@ -14,18 +15,18 @@ load_dotenv()
 
 # Snowflake connection parameters from environment variables
 conn = snowflake.connector.connect(
-    user=os.getenv('SNOWFLAKE_USER'),
-    password=os.getenv('SNOWFLAKE_PASSWORD'),
-    account=os.getenv('SNOWFLAKE_ACCOUNT'),
+    user=st.secrets['SNOWFLAKE_USER'],
+    password=st.secrets['SNOWFLAKE_PASSWORD'],
+    account=st.secrets['SNOWFLAKE_ACCOUNT'],
 )
 
 # Create cursor
 cur = conn.cursor()
 
 # Use the database, schema, and warehouse
-cur.execute(f"USE WAREHOUSE {os.getenv('SNOWFLAKE_WAREHOUSE')}")
-cur.execute(f"USE DATABASE {os.getenv('SNOWFLAKE_DATABASE')}")
-cur.execute(f"USE SCHEMA {os.getenv('SNOWFLAKE_SCHEMA')}")
+cur.execute(f"USE WAREHOUSE {st.secrets['SNOWFLAKE_WAREHOUSE']}")
+cur.execute(f"USE DATABASE {st.secrets['SNOWFLAKE_DATABASE']}")
+cur.execute(f"USE SCHEMA {st.secrets['SNOWFLAKE_SCHEMA']}")
 
 
 def parse_documents():

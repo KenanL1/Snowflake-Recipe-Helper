@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import os
+import streamlit as st
 from dotenv import load_dotenv
 import snowflake.connector
 from snowflake.core import Root
@@ -12,12 +13,12 @@ load_dotenv()
 
 # Snowflake connection parameters from environment variables
 conn = snowflake.connector.connect(
-    user=os.getenv('SNOWFLAKE_USER'),
-    password=os.getenv('SNOWFLAKE_PASSWORD'),
-    account=os.getenv('SNOWFLAKE_ACCOUNT'),
-    # warehouse=os.getenv('SNOWFLAKE_WAREHOUSE'),
-    # database=os.getenv('SNOWFLAKE_DATABASE'),
-    # schema=os.getenv('SNOWFLAKE_SCHEMA')
+    user=st.secrets['SNOWFLAKE_USER'],
+    password=st.secrets['SNOWFLAKE_PASSWORD'],
+    account=st.secrets['SNOWFLAKE_ACCOUNT'],
+    # warehouse=st.secrets['SNOWFLAKE_WAREHOUSE'],
+    # database=st.secrets['SNOWFLAKE_DATABASE'],
+    # schema=st.secrets['SNOWFLAKE_SCHEMA']
 )
 
 # Create cursor
@@ -68,12 +69,13 @@ nutrients_df = pd.DataFrame(nutrient_data)
 
 try:
     # Create database if not exists
-    cur.execute(f"USE WAREHOUSE {os.getenv('SNOWFLAKE_WAREHOUSE')}")
+    cur.execute(f"USE WAREHOUSE {st.secrets['SNOWFLAKE_WAREHOUSE']}")
     cur.execute(
-        f"CREATE DATABASE IF NOT EXISTS {os.getenv('SNOWFLAKE_DATABASE')}")
-    cur.execute(f"USE DATABASE {os.getenv('SNOWFLAKE_DATABASE')}")
-    cur.execute(f"CREATE SCHEMA IF NOT EXISTS {os.getenv('SNOWFLAKE_SCHEMA')}")
-    cur.execute(f"USE SCHEMA {os.getenv('SNOWFLAKE_SCHEMA')}")
+        f"CREATE DATABASE IF NOT EXISTS {st.secrets['SNOWFLAKE_DATABASE']}")
+    cur.execute(f"USE DATABASE {st.secrets['SNOWFLAKE_DATABASE']}")
+    cur.execute(
+        f"CREATE SCHEMA IF NOT EXISTS {st.secrets['SNOWFLAKE_SCHEMA']}")
+    cur.execute(f"USE SCHEMA {st.secrets['SNOWFLAKE_SCHEMA']}")
 
     # Create food table
     cur.execute("""
@@ -112,8 +114,8 @@ try:
         conn=conn,
         df=food_df,
         table_name='FOODS',
-        # database=os.getenv('SNOWFLAKE_DATABASE'),
-        # schema=os.getenv('SNOWFLAKE_SCHEMA')
+        # database=st.secrets['SNOWFLAKE_DATABASE'],
+        # schema=st.secrets['SNOWFLAKE_SCHEMA']
     )
     print(f"Loaded {nrows} food records in {nchunks} chunks")
 
@@ -121,8 +123,8 @@ try:
         conn=conn,
         df=nutrients_df,
         table_name='FOOD_NUTRIENTS',
-        database=os.getenv('SNOWFLAKE_DATABASE'),
-        schema=os.getenv('SNOWFLAKE_SCHEMA')
+        database=st.secrets['SNOWFLAKE_DATABASE'],
+        schema=st.secrets['SNOWFLAKE_SCHEMA']
     )
     print(f"Loaded {nrows} nutrient records in {nchunks} chunks")
 

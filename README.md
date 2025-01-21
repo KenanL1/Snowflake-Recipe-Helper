@@ -12,18 +12,18 @@ Are you tired of flipping through cookbooks to find the perfect recipe, only to 
 
 ## Deploying
 
-**1. Configure Snowflake Environment**
+**1. Configure Snowflake Secrets**
 
-Create a .env file with the following Snowflake configuration:
+Create a .streamlit/secrets.toml file containing the following:
 ```
-SNOWFLAKE_USER=
-SNOWFLAKE_PASSWORD=
-SNOWFLAKE_ACCOUNT=
-SNOWFLAKE_WAREHOUSE=
-SNOWFLAKE_DATABASE=
-SNOWFLAKE_SCHEMA=
-SNOWFLAKE_NUTRITION_SERVICE=
-SNOWFLAKE_FOOD_LIST_SERVICE=
+SNOWFLAKE_USER=""
+SNOWFLAKE_PASSWORD=""
+SNOWFLAKE_ACCOUNT=""
+SNOWFLAKE_WAREHOUSE=""
+SNOWFLAKE_DATABASE=""
+SNOWFLAKE_SCHEMA=""
+SNOWFLAKE_NUTRITION_SERVICE=""
+SNOWFLAKE_FOOD_LIST_SERVICE=""
 ```
 
 **2. Create Food and Nutrient Tables**

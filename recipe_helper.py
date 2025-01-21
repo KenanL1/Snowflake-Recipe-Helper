@@ -16,17 +16,17 @@ pd.set_option("max_colwidth", None)
 NUM_CHUNKS = 3  # Num-chunks provided as context.
 
 # service parameters
-CORTEX_SEARCH_DATABASE = os.getenv('SNOWFLAKE_DATABASE')
-CORTEX_SEARCH_SCHEMA = os.getenv('SNOWFLAKE_SCHEMA')
-CORTEX_SEARCH_SERVICE = os.getenv('SNOWFLAKE_NUTRITION_SERVICE')
-CORTEX_SEARCH_FOOD_SERVICE = os.getenv('SNOWFLAKE_FOOD_LIST_SERVICE')
+CORTEX_SEARCH_DATABASE = st.secrets['SNOWFLAKE_DATABASE']
+CORTEX_SEARCH_SCHEMA = st.secrets['SNOWFLAKE_SCHEMA']
+CORTEX_SEARCH_SERVICE = st.secrets['SNOWFLAKE_NUTRITION_SERVICE']
+CORTEX_SEARCH_FOOD_SERVICE = st.secrets['SNOWFLAKE_FOOD_LIST_SERVICE']
 CONNECTION_PARAMETERS = {
-    "account": os.environ["SNOWFLAKE_ACCOUNT"],
-    "user": os.environ["SNOWFLAKE_USER"],
-    "password": os.environ["SNOWFLAKE_PASSWORD"],
+    "account": st.secrets["SNOWFLAKE_ACCOUNT"],
+    "user": st.secrets["SNOWFLAKE_USER"],
+    "password": st.secrets["SNOWFLAKE_PASSWORD"],
     "role": "ACCOUNTADMIN",
     "database": CORTEX_SEARCH_DATABASE,
-    "warehouse": os.getenv('SNOWFLAKE_WAREHOUSE'),
+    "warehouse": st.secrets['SNOWFLAKE_WAREHOUSE'],
     "schema": CORTEX_SEARCH_SCHEMA
 }
 
