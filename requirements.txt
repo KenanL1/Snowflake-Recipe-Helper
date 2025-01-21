@@ -1,0 +1,8 @@
+pandas
+streamlit
+snowflake
+dotenv
+langchain
+langchain-community
+pwd
+snowflake-snowpark-python
