@@ -212,6 +212,7 @@ def complete(prompt):
 
 def main():
     st.title(f":chopsticks: Nutritional Recipe Helper :bacon:")
+    st.subheader(f"Simplify meal planning and provide nutritional information")
 
     st.sidebar.markdown('''Available Demo Recipes
                         
